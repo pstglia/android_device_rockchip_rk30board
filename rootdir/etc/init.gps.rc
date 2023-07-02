@@ -1,0 +1,53 @@
+on post-fs-data
+
+    mkdir /data/gps 771 system system
+    chown system system /data/gps
+
+on post-fs
+
+    # nStandby GPIO
+    chmod 0664 /proc/driver/bcms
+    chown gps gps /proc/driver/bcms
+
+on property:ro.spid.gps.tty=ttyMFD1
+    chmod 0660 /dev/ttyMFD1
+    chown gps gps /dev/ttyMFD1
+    chmod 0660 /sys/class/tty/ttyMFD1/../../power/control
+    chown system system /sys/class/tty/ttyMFD1/../../power/control
+    write /sys/class/tty/ttyMFD1/../../power/control auto
+    mkdir /dev/gps 0770 gps system
+    symlink /dev/ttyMFD1 /dev/gps/ttyGPS
+    symlink /sys/class/tty/ttyMFD1/../../power/control /dev/gps/ttyGPSPowerControl
+
+on property:ro.spid.gps.tty=ttyMFD3
+    chmod 0660 /dev/ttyMFD3
+    chown gps gps /dev/ttyMFD3
+    chmod 0660 /sys/class/tty/ttyMFD3/../../power/control
+    chown system system /sys/class/tty/ttyMFD3/../../power/control
+    write /sys/class/tty/ttyMFD3/../../power/control auto
+    mkdir /dev/gps 0770 gps system
+    symlink /dev/ttyMFD3 /dev/gps/ttyGPS
+    symlink /sys/class/tty/ttyMFD3/../../power/control /dev/gps/ttyGPSPowerControl
+
+on property:ro.spid.gps.tty=ttyS2
+    chmod 0660 /dev/ttyS2
+    chown gps gps /dev/ttyS2
+    chmod 0660 /sys/class/tty/ttyS2/../../power/control
+    chown system system /sys/class/tty/ttyS2/../../power/control
+    write /sys/class/tty/ttyS2/../../power/control auto
+    mkdir /dev/gps 0770 gps system
+    symlink /dev/ttyS2 /dev/gps/ttyGPS
+    symlink /sys/class/tty/ttyS2/../../power/control /dev/gps/ttyGPSPowerControl
+
+# deleted by huangzuntao as there is no gpscerd deamon
+#service gpscerd /system/bin/gpscerd /data/gps/gps.cer
+#    class main
+#    user system
+#    group system
+#    oneshot
+
+service gpsd /system/vendor/bin/gpsd -c /system/etc/gps.xml
+    class main
+    user gps
+    group system inet radio sdcard_rw
+
