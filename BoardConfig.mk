@@ -19,7 +19,6 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a7
-#TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 TARGET_BOARD_PLATFORM := rk3229
 TARGET_BOOTLOADER_BOARD_NAME := rk30sdk
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -29,6 +28,10 @@ TARGET_OTA_ASSERT_DEVICE := rk3229,rk3228
 TARGET_NO_RADIOIMAGE := true
 
 # Inline kernel building
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
+#KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
 TARGET_KERNEL_SOURCE := kernel/rockchip/rk30board
 TARGET_KERNEL_ARCH := arm
 BOARD_KERNEL_IMAGE_NAME := kernel
