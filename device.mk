@@ -102,15 +102,15 @@ PRODUCT_PACKAGES += \
     libva_videodecoder \
     libva_videoencoder
 
-PRODUCT_PACKAGES += \
-    libwrs_omxil_common \
-    libwrs_omxil_core_pvwrapped \
-    libOMXVideoDecoderH263 \
-    libOMXVideoDecoderMPEG4 \
-    libOMXVideoEncoderAVC \
-    libOMXVideoDecoderWMV \
-    libOMXVideoEncoderH263 \
-    libOMXVideoEncoderMPEG4
+#PRODUCT_PACKAGES += \
+#    libwrs_omxil_common \
+#    libwrs_omxil_core_pvwrapped \
+#    libOMXVideoDecoderH263 \
+#    libOMXVideoDecoderMPEG4 \
+#    libOMXVideoEncoderAVC \
+#    libOMXVideoDecoderWMV \
+#    libOMXVideoEncoderH263 \
+#    libOMXVideoEncoderMPEG4
 
 # PowerHAL
 PRODUCT_PACKAGES += \
@@ -143,8 +143,7 @@ PRODUCT_PACKAGES += \
     gps_lto.sh \
     init.compass.rc \
     init.wireless.rc \
-    debuglog.sh \
-    intel_prop.cfg
+    debuglog.sh
 
 # Stlport
 PRODUCT_PACKAGES += \
