@@ -30,12 +30,13 @@ TARGET_NO_RADIOIMAGE := true
 # Inline kernel building
 #TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 #KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+#KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
 TARGET_KERNEL_SOURCE := kernel/rockchip/rk30board
 TARGET_KERNEL_ARCH := arm
-BOARD_KERNEL_IMAGE_NAME := kernel
+#BOARD_KERNEL_IMAGE_NAME := kernel
 TARGET_KERNEL_CONFIG := lineage_rk30board_defconfig
+#TARGET_PREBUILT_KERNEL := device/rockchip/rk30board/kernel
 
 BOARD_KERNEL_CMDLINE := vmalloc=496M psci=enable rockchip_jtag console=ttyFIQ0 androidboot.selinux=permissive androidboot.hardware=rk30board androidboot.console=ttyFIQ0 init=/init mtdparts=rk29xxnand:0x00002000@0x00002000(uboot),0x00004000@0x00004000(trust),0x00002000@0x00008000(misc),0x00000800@0x0000A000(baseparamer),0x00007800@0x0000A800(resource),0x00006000@0x00012000(kernel),0x0000A000@0x00018000(boot),0x0000C000@0x00022000(recovery),0x00020000@0x0002E000(backup),0x00040000@0x0004E000(cache),0x002FE000@0x0008E000(userdata),0x00002000@0x0038C000(metadata),0x00002000@0x0038E000(kpanic),0x00200000@0x00390000(system),-@0x00590000(user) storagemedia=nand uboot_logo=0x02000000@0x9dc00000:0x01000000 loader.timestamp=2016-01-26_20:19:05 hdmi.vic=65540 tve.format=1
 
