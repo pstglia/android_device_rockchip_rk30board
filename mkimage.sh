@@ -84,7 +84,9 @@ else
 	[ -d $OUT/root ] && \
 	mkbootfs $OUT/root | minigzip > $OUT/ramdisk.img && \
         truncate -s "%4" $OUT/ramdisk.img && \
-	rkst/mkkrnlimg $OUT/ramdisk.img $IMAGE_PATH/boot.img >/dev/null
+	mkbootimg --base 0 --pagesize 16384 --kernel_offset 0x60408000 --ramdisk_offset 0x62000000 --second_offset 0x60f00000 --tags_offset 0x60088000 --kernel kernel/rockchip/rk30board/arch/arm/boot/zImage --ramdisk $OUT/ramdisk.img -o $OUT/boot.img  
+	#rkst/mkkrnlimg $OUT/ramdisk.img $IMAGE_PATH/boot.img >/dev/null
+	cp -a $OUT/boot.img $IMAGE_PATH/
 	echo "done."
 fi
 if [ $TARGET == $BOOT_OTA ]
@@ -102,7 +104,8 @@ else
 	mkbootfs $OUT/recovery/root | minigzip > $OUT/ramdisk-recovery.img && \
         truncate -s "%4" $OUT/ramdisk-recovery.img && \
         #mkbootimg --kernel $OUT/kernel --ramdisk $OUT/ramdisk-recovery.img --os_version $PLATFORM_VERSION --os_patch_level $PLATFORM_SECURITY_PATCH --cmdline buildvariant=$TARGET_BUILD_VARIANT --output $OUT/recovery.img && \
-        rkst/mkkrnlimg $OUT/ramdisk-recovery.img $OUT/recovery.img
+	mkbootimg --base 0 --pagesize 16384 --kernel_offset 0x60408000 --ramdisk_offset 0x62000000 --second_offset 0x60f00000 --tags_offset 0x60088000 --kernel kernel/rockchip/rk30board/arch/arm/boot/zImage --ramdisk $OUT/ramdisk-recovery.img -o $OUT/recovery.img  
+        #rkst/mkkrnlimg $OUT/ramdisk-recovery.img $OUT/recovery.img
 	cp -a $OUT/recovery.img $IMAGE_PATH/
 	echo "done."
 fi
